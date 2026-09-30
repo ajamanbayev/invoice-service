@@ -1,0 +1,5 @@
+api:
+    resource:
+        path: ../src/Billing/Infrastructure/Http/
+        namespace: App\Billing\Infrastructure\Http
+    type: attribute

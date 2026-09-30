@@ -1,0 +1,29 @@
+parameters:
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    # Commands and read models are DTOs. Exceptions are not services.
+    App\Billing\Application\:
+        resource: '../src/Billing/Application/'
+        exclude:
+            - '../src/Billing/Application/Command/'
+            - '../src/Billing/Application/View/'
+
+    App\Billing\Infrastructure\:
+        resource: '../src/Billing/Infrastructure/'
+        exclude:
+            - '../src/Billing/Infrastructure/Http/Request/'
+            - '../src/Billing/Infrastructure/Http/Exception/'
+
+    # Basis points: 1900 = 19.00%. Illustrative rates for the review, not tax advice.
+    App\Billing\Infrastructure\Tax\ConfiguredVatPolicy:
+        arguments:
+            $basisPointsByCountry:
+                DE: 1900
+                FR: 2000
+                NL: 2100
+                KZ: 1200
+                US: 0
